@@ -12,7 +12,7 @@ class Book(
         var id: Long? = null,
 
         @NotBlank
-        @Size(min = 1, max = 4000)
+        @Size(min = 1, max = 255)
         @Column(name = "name")
         var name: String
 )
