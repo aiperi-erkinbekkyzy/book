@@ -13,15 +13,7 @@ class BookService(private val repository: BookRepository) {
     }
 
     fun getById(id: Long): BookEntity {
-        val book = repository.findById(id)
-
-        return if (book.isPresent) {
-            book.get()
-        } else {
-            // как правильно выбросить ошибку если нет записи?
-            // как работать с optional полями?
-            throw NotFoundException("No record exist for given id")
-        }
+        return repository.findBookEntityById(id) ?: throw NotFoundException("No record exist for given id")
     }
 
     fun create(entity: BookEntity): BookEntity {
@@ -38,7 +30,6 @@ class BookService(private val repository: BookRepository) {
             newEntity.price = entity.price
             newEntity.description = entity.description
             newEntity.category = entity.category
-            // как можно сократить? TS => newEntity = {...entity}; object.assign();
 
             newEntity = repository.save(newEntity)
 
