@@ -23,7 +23,7 @@ class BookApiController(private val bookService: BookService) {
 
     @PostMapping
     fun create(@Valid @RequestBody product: BookEntity): BookEntity {
-        return bookService.createOrUpdate(product)
+        return bookService.create(product)
     }
 
     @GetMapping("/{id}")
@@ -33,6 +33,6 @@ class BookApiController(private val bookService: BookService) {
 
     @PutMapping("/{id}")
     fun update(@PathVariable id: Long, @Valid @RequestBody book: BookEntity): BookEntity {
-        return bookService.createOrUpdate(book)
+        return bookService.update(book)
     }
 }
